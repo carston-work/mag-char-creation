@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style">
+    <title>My Character</title>
+</head>
+<body>
+    <div class = 'section'>
+        <h1 id = "name"></h1>
+        <h2 id = "concept"></h2>
+        <div id = "details">
+            <p>Crew Name:<span id = "crew"></span></p>
+            <p>Cause:<span id = "cause"></span></p>
+            <p>Target:<span id = "target"></span></p>
+            <p>Method:<span id = "method"></span></p>
+            <p>Race:<span id = "race"></span></p>
+            <p>Sex:<span id = "sex"></span></p>
+            <p>Age:<span id = "age"></span></p>
+            <p>Height:<span id = "height"></span></p>
+            <p>Weight:<span id = "weight"></span></p>
+        </div>
+    </div>
+    <div class = 'section'>
+        <table id = "stats">
+            <tr>
+                <td><h4>Attributes</h4></td>
+                <td><h4>Standings</h4></td>
+                <td><h4>Resiliences</h4></td>
+            </tr>
+            <tr>
+                <td><re>Physique: </re><span id = "physique"></span></td>
+                <td><re>Resources: </re><span id = "resources"></span></td>
+                <td><re>Health: </re><span id = "health"></span></td>
+            </tr>
+            <tr>
+                <td><re>Charm: </re><span id = "charm"></span></td>
+                <td><re>Influence: </re><span id = "influence"></span></td>
+                <td><re>Reputation: </re><span id = "reputation"></span></td>
+            </tr>
+            <tr>
+                <td><re>Wits: </re><span id = "wits"></span></td>
+                <td><re>Spirit: </re><span id = "spirit"></span></td>
+                <td><re>Willpower: </re><span id = "willpower"></span></td>
+            </tr>
+        </table>
+    </div> 
+    <div id = "traits" class = 'section'>
+        <h4>Traits & Burdens</h4>
+    </div>
+    <div id = "tragedy-destiny" class = 'section'>
+        <span id = "tragedy"><h4>Tragedy</h4></span>
+        <span id ="destiny"><h4>Destiny</h4></span>
+    </div>
+    <div id ="powers" class = 'section'>
+        <h4>Powers</h4>
+
+    </div>
+    <div id="equipment" class = 'section'>
+        <h4>Equipment</h4>
+
+    </div>
+    <div id = 'backstorydiv' class = 'section'>
+        <h4>Backstory</h4>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src = "./viewCharScript"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style">
+    <title>New Character</title>
+</head>
+<body>
+    <div id = "crew" class = "section">
+        <span class = "form">
+            <p>Crew Name:<input type="text" id = "crewName" placeholder="Nine Eyes"></p>
+            <p>Cause:<input type="text" id = "cause" placeholder="Liberate the Skaa"></p>
+            <p>Target:<input type="text" id = "target" placeholder="The Steel Ministry"></p>
+            <p>Method:<input type="text" id = "method" placeholder="Theft"></p>
+            <!-- <button>Next</button> -->
+        </span>
+        <span class = "wob">
+            <h1>Your Crew</h1>
+            <blockquote>"In my experience one of the most harmful things that can happen to an RPG
+                group is having a crew full of people with no good reason to be together. In the
+                Mistborn Adventure Game, characters shouldn’t just ‘meet in a bar’ and go off
+                adventuring. They need more. There can (and maybe should) be strife between
+                members of your Crew, but characters also need powerful common goals and a
+                binding mutual concept along with their individual passions and destinies.
+                Players, try working in some prior relationships between your characters
+                and the other Crew members — maybe you worked together on a job that went
+                wrong, or you both courted the same man, who then spurned you both."</blockquote>
+        </span>
+    </div>
+    <div id = "concept" class = "section">
+        <span class = "form">
+            <p>Character Concept:<input type="text" id = "concept" placeholder="Skaa performer"></p>
+            <!-- <button>Next</button> -->
+        </span>
+        <span class = "wob">
+            <h1>Character Concept</h1>
+            <blockquote>Your character concept should be short and sweet: just a few words, like “disgruntled mercenary,” “skaa thief,” or “rebellious Terrisman.” Don’t worry about
+                filling in lots of details yet — those will come soon. Right now you should focus
+                on getting a quick and dirty idea down on paper.</blockquote>
+        </span>
+    </div>
+    <div id = "questions" class = "section">
+        <span class = "form">
+            <p>Drive:<input type="text" id = "drive" class = "traits" placeholder="Save knowledge for the future"></p>
+            <p>Profession:<input type="text" id = "profession" class = "traits" placeholder="Chronicler of Luthadel"></p>
+            <p>Specialty:<input type="text" id = "specialty" class = "traits" placeholder="Sage advice"></p>
+            <p>Feature:<input type="text" id = "feature" class = "traits" placeholder="Gangly frame"></p>
+            <p>Personality:<input type="text" id = "personailty" class = "traits" placeholder="Solemn"></p>
+            <p>Tragedy:<textarea id = "tragedy" placeholder="My mentor died because of my weakness"></textarea></p>
+            <p>Destiny:<textarea id = "destiny" placeholder = "Find the one truth that will free the Terris people from oppression"></textarea></p>
+            <!-- <button>Next</button> -->
+        </span>
+        <span class = "wob">
+            <h1>Traits</h1>
+            <blockquote></blockquote>
+        </span>
+    </div>
+    <div id = "strengths" class = "section">
+        <span class = "form">
+            <div class = "emptyBoxes" ondrop="unselectedDrop(event)" ondragover="allowDrop(event)">
+                <ul>
+                    <li><p class = "strengths" draggable="true" ondragstart="drag(event)" id = "powers">Powers</p></li>
+                    <li><p class = "strengths" draggable="true" ondragstart="drag(event)" id = "attributes">Attributes</p></li>
+                    <li><p class = "strengths" draggable="true" ondragstart="drag(event)" id = "standings">Standings</p></li>
+                </ul>
+            </div>
+            <ol id = "strengthsList">
+                <li><div class = "strengthsBoxes" id = "firstStrength" ondrop="drop(event)" ondragover="allowDrop(event)"></div><p>(strong)</p></li>
+                <li><div class = "strengthsBoxes" id = "secondStrength" ondrop="drop(event)" ondragover="allowDrop(event)"></div><p>(average)</p></li>
+                <li><div class = "strengthsBoxes" id = "thirdStrength" ondrop="drop(event)" ondragover="allowDrop(event)"></div><p>(weak)</p></li>
+            </ol>
+        </span>
+        <span class = "wob">
+            <h1 id = 'pasTitle'>Prioritize Powers, Attributes, and Standings</h1>
+            <blockquote id = pasHelpText>Arrange "Powers", "Attributes", and "Standings" in order from "strong" to "weak"</blockquote>
+            <p id = "speciesWarning"></p>
+        </span>
+    </div>
+    <div id = "powersBlock" class = "section">
+        <span class = "form">
+            <div id = "power-selection">
+                <input type="radio" id="mistborn" value="mistborn" name="powers" class="strong powers">
+                <label for="mistborn">Mistborn (noble, skaa)</label><br>
+                <input type="radio" id="keeper" value="keeper" name="powers" class="strong powers">
+                <label for="keeper">Keeper (Terris)</label><br>
+                <input type="radio" id="misting" value="misting" name="powers" class="average powers">
+                <label for="misting">Misting (noble, skaa)</label><br>
+                <input type="radio" id="mimicry" value="mimicry" name="powers" class="average powers">
+                <label for="mistborn">Mimicry (kandra)</label><br>
+                <input type="radio" id="none" value="none" name="powers" class="weak powers">
+                <label for="none">None (noble, skaa, Terris)</label>
+            </div>
+            <div id = "race-selection">
+                <input type="radio" id="noble" value="noble" name="races" class="mistborn misting none race">
+                <label for="noble">Noble</label><br>
+                <input type="radio" id="skaa" value="skaa" name="races" class="mistborn misting none race">
+                <label for="noble">Skaa</label><br>
+                <input type="radio" id="terris" value="terris" name="races" class="keeper none race">
+                <label for="noble">Terris</label><br>
+                <input type="radio" id="kandra" value="kandra" name="races" class="mimicry race">
+                <label for="kandra">Kandra</label>
+            </div>
+        </span>
+        <span class = "wob">
+            <h1>Powers and Race</h1>
+            <blockquote></blockquote>
+        </span>
+    </div>
+    <div id = "attsAndStands" class = "section">
+        <span class = "form">
+            <table>
+                <tr>
+                    <td>Attribute points:<p id = "attPts"></p></td>
+                    <td>Standings points:<p id = "standPts"></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Physique<input type="number" min = "2" id = "physique" class = "atts nums physical" value = 2 readonly = true></td>
+                    <td>Resources<input type="number" min = "2" id = "resources" class = "stands nums physical" value = 2 readonly = true></td>
+                    <td>Health<div id = "health" class = "resiliences">4</div></td>
+                </tr>
+                <tr>
+                    <td>Charm<input type="number" min = "2" id = "charm" class = "atts nums cognitive" value = 2 readonly = true></td>
+                    <td>Influence<input type="number" min = "2" id = "influence" class = "stands nums cognitive" value = 2 readonly = true></td>
+                    <td>Reputation<div id = "reputation" class = "resiliences">4</div></td>
+                </tr>
+                <tr>
+                    <td>Wits<input type="number" min = "2" id = "wits" class = "atts nums spiritual" value = 2 readonly></td>
+                    <td>Spirit<input type="number" min = "2" id = "spirit" class = "stands nums spiritual" value = 2 readonly></td>
+                    <td>Willpower<div id = "willpower" class = "resiliences">4</div></td>
+                </tr>
+            </table>
+            <!-- <button>Next</button> -->
+        </span>
+        <span class = "wob">
+            <h1>Attributes, Standings, and Resiliences</h1>
+            <blockquote></blockquote>
+        </span>
+    </div>
+    <div id = "details" class = "section">
+        <span class = "form">
+            <p>Name:<input type="text" id = "charName"></p>
+            <p>Sex:<input type="text" id = "gender"></p>
+            <p>Age:<input type="text" id = "age"></p>
+            <p>Height:<input type="text" id = "height"></p>
+            <p>Weight:<input type="text" id = "weight"></p>
+            <!-- <button>Next</button> -->
+        </span>
+        <span class = "wob">
+            <h1>Other Details</h1>
+            <blockquote></blockquote>
+        </span>
+    </div>
+    <div id = "props" class = "section">
+        <span class = "wob">
+            <h1>Props</h1>
+            <blockquote></blockquote>
+        </span>
+        <span class = "form">
+            <p>Props left to get:</p><p id="wallet"></p>
+            <table>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'bow-n-arrows' name = "props" class = "props weapons" value="2">
+                        <label for="bow-n-arrows">Bow and flint arrows (2 props)</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'leather-armor' name = "props" class = "props armor" value="1">
+                        <label for="leather-armor">Leather / Padded armor</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'horse-n-carriage' name = "props" class = "props ani-vehicles" value="2">
+                        <label for="horse-n-carriage">Horse and carriage (2 props)</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'rope-n-grapple' name = "props" class = "props tools" value="1">
+                        <label for="rope-n-grapple">Rope and grapple</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'bow-n-m-arrows' name = "props" class = "props weapons" value="1">
+                        <label for="bow-n-m-arrows">Bow and steel arrows</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'steel-mail' name = "props" class = "props armor" value="1">
+                        <label for="steel-mail">Steel mail</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'banned-book' name = "props" class = "props tools" value="2">
+                        <label for="banned-book">Banned book (2 props)</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'writing-steel' name = "props" class = "props tools" value="1">
+                        <label for="writing-steel">Writing steel</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'club-staff' name = "props" class = "props weapons" value="1">
+                        <label for="club-staff">Club or staff</label>
+                    </td><td>
+                        <input type="checkbox" id = 'steel-plate' name = "props" class = "props armor" value="2">
+                        <label for="steel-plate">Steel plate armor (2 props)</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'bottle-of-wine-ale' name = "props" class = "props tools" value="1">
+                        <label for="bottle-of-wine-ale">Bottle of wine / ale</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'bones' name = "props" class = "props implements" value="1">
+                        <label for="bones">Bones (1 set)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'dagger' name = "props" class = "props weapons" value="1">
+                        <label for="dagger">Dagger</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'small-metal-shield' name = "props" class = "props shields" value="1">
+                        <label for="small-metal-shield">Small metal shield</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'tools' name = "props" class = "props tools" value="1">
+                        <label for="tools">Craftsman's tools</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'metalminds' name = "props" class = "props implements" value="1">
+                        <label for="metalminds">Set of 3 metalminds</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'dueling-cane' name = "props" class = "props weapons" value="1">
+                        <label for="dueling-cane">Bow and steel arrows</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'small-wood-shield' name = "props" class = "props shields" value="1">
+                        <label for="small-wood-shield">Small wooden shield</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'disguise' name = "props" class = "props tools" value="1">
+                        <label for="disguise">Disguise</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'misting-vial' name = "props" class = "props implements" value="1">
+                        <label for="misting-vial">Misting vial (3 charges of 1 metal)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'hammer' name = "props" class = "props weapons" value="2">
+                        <label for="hammer">Hammer (2 props)</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'large-metal-shield' name = "props" class = "props shields" value="2">
+                        <label for="large-metal-shield">Large metal shield (2 props)</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'formal-clothing-jewelry' name = "props" class = "props tools" value="1">
+                        <label for="formal-clothing-jewelry">Formal clothing / jewelry</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'mistborn-vial' name = "props" class = "props implements" value="1">
+                        <label for="mistborn-vial">Mistborn vial (1 charge of the 8 basic metals)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'obsidian-dagger' name = "props" class = "props weapons" value="1">
+                        <label for="obsidian-dagger">Obsidian dagger</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'large-wood-shield' name = "props" class = "props shields" value="2">
+                        <label for="large-wood-shield">Large wooden shield (2 props)</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'lockpicks' name = "props" class = "props tools" value="1">
+                        <label for="lockpicks">Lockpicks</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'copper-clips' name = "props" class = "props implements" value="1">
+                        <label for="copper-clips">Sack of copper clips or set of horseshoes</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'spear' name = "props" class = "props weapons" value="1">
+                        <label for="spear">Spear</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'pet' name = "props" class = "props ani-vehicles" value="1">
+                        <label for="pet">Pet</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'medical-supplies' name = "props" class = "props tools" value="1">
+                        <label for="medical-supplies">Medical supplies</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'stone-spear' name = "props" class = "props weapons" value="2">
+                        <label for="stone-spear">Stone spear (2 props)</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'cart' name = "props" class = "props ani-vehicles" value="1">
+                        <label for="cart">Cart</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'pocket-watch' name = "props" class = "props tools" value="1">
+                        <label for="pocket-watch">Pocket watch</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id = 'sword' name = "props" class = "props weapons" value="1">
+                        <label for="sword">Sword</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'Horse' name = "props" class = "props ani-vehicles" value="1">
+                        <label for="horse">Horse</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id = 'pen-n-book' name = "props" class = "props tools" value="1">
+                        <label for="pen-n-book">Pen and blank book</label>
+                    </td>
+                </tr>
+            </table>
+            <!-- <button>Next</button> -->
+        </span>
+    </div>
+    <div id = "details" class = "section">
+        <span class = "form">
+            <textarea id = "backstory"></textarea><br><br>
+            <button id = 'submit'>Submit</button>
+        </span>
+        <span class = "wob">
+            <h1>Backstory</h1>
+            <blockquote>Finally, it may help you to put together a brief narrative tying all your choices
+                together. You can of course flesh out your character’s background as you play,
+                but a good back story can really help cement his or her place in the world and the
+                ongoing story.<br><br>Unsure where you might want to take your back story? No problem. Jot down
+                some ideas and keep them to yourself. Just be sure not to reveal them until you’re
+                ready, as anything committed to the ongoing communal story becomes true fact
+                — unless of course it’s a lie, or a misperception, or maybe leads to an unexpected
+                secret. There’s always another secret...</blockquote>
+        </span>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src = "./newCharacterScript"></script>
+</body>
+</html>
