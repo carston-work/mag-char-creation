@@ -6,8 +6,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-const characters = [] 
-let charId = 0
+let characters = [] 
+charId = 0
 
 app.get('/viewChar', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/viewChar.html'))
@@ -46,6 +46,7 @@ app.get('/getChar/:id', (req, res) => {
 
 app.delete('/delete', (req, res) => {
     characters = []
+    console.log(characters)
     res.status(200)
 })
 
