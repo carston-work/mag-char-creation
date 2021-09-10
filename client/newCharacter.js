@@ -311,7 +311,7 @@ function createCharacter() {
 
     const newChar = new Character(details, atts, stands, traits, tragedy, destiny, powers, equipment, backstory)
 
-    axios.post('http://localhost:4000/newChar', newChar) 
+    axios.post('/newChar', newChar) 
         .then( res => {
             window.location.href = res.data
         })
