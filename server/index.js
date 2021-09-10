@@ -34,7 +34,7 @@ app.post('/newChar', (req, res) => {
     charId++
     characters.push(newChar)
     console.log(characters)
-    res.status(200).send('http://localhost:4000/viewChar')
+    res.status(200).send('/viewChar')
 })
 
 app.get('/getChar/:id', (req, res) => {
