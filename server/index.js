@@ -44,6 +44,11 @@ app.get('/getChar/:id', (req, res) => {
     res.status(200).send(sendChar)
 })
 
+app.delete('/delete', (req, res) => {
+    characters = []
+    res.status(200)
+})
+
 const port = process.env.PORT || 4000
 
 

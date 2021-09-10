@@ -1,4 +1,4 @@
-axios.get('http://localhost:4000/getChar/0')
+axios.get('/getChar/0')
     .then(res => {
         const { details, atts, stands, traits, tragedy, destiny, powers, equipment, backstory } = res.data
         for (detail in details) {
@@ -46,4 +46,5 @@ axios.get('http://localhost:4000/getChar/0')
         document.getElementById('health').textContent = parseInt(atts.physique) + parseInt(stands.resources)
         document.getElementById('reputation').textContent = parseInt(atts.charm) + parseInt(stands.influence)
         document.getElementById('willpower').textContent = parseInt(atts.wits) + parseInt(stands.spirit)
+        axios.delete('/delete')
     })
