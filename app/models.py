@@ -1,8 +1,9 @@
-from app import db
+from app import db, login_manager
 from werkzeug.security import generate_password_hash
+from flask_login import UserMixin
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
 
     __tablename__ = "users"
     
@@ -13,3 +14,11 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self.password = generate_password_hash(password)
+
+    def get_id(self):
+        return self.user_id
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)

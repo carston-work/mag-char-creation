@@ -1,7 +1,7 @@
 #header {
     display:flex;
-    background-color: maroon;
-    color: silver;
+    /* background-color: maroon; */
+    /* color: silver; */
     height: 6rem;
     font-size: 2rem;
     justify-content: space-between;
@@ -10,7 +10,11 @@
 
 body {
     background-color: black;
-    color: white;
+    color: silver;
+}
+
+body > * {
+    background-color: maroon;
 }
 
 #nav_links {
@@ -31,7 +35,7 @@ a {
 
 }
 
-a:hover {
+a:hover, .submit:hover {
     color: white;
     font-size: 1.1em;
 }
@@ -43,7 +47,7 @@ aside {
     margin-top: 1rem;
     background-color: maroon;
     float: right;
-    width: 30%;
+    width: 35%;
     min-width: 300px;
     font-size: 1.5rem;
     text-align: center;
@@ -55,14 +59,27 @@ aside > div {
     color: silver;
 }
 
-/* aside > div:hover {
+form {
     box-sizing: border-box;
-    border-radius: 20px;
-    border:2px solid black;
-    font-size: 1.5em;
-    background-color: orange;
-    color: white;
-    width: 80%;
+    width: 50%;
+    min-width: 500px;
+    /* background-color: maroon; */
     margin-left: auto;
     margin-right: auto;
-} */
+    margin-top: 50px;
+    padding: 5rem;
+    font-size: 2rem;
+}
+
+input, label {
+    margin: 1rem;
+    font-size: inherit;
+    max-width: 80%;
+}
+
+.submit {
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    font-size: inherit;
+}

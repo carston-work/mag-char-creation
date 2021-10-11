@@ -15,7 +15,7 @@ class RegistrationForm(FlaskForm):
                                 InputRequired("You need a password!"),
                                 DataRequired("Your password cannot be a bunch of blank characters."),
                                 Length(min=10, max=40, message="Password must be between 10 and 40 characters in length."),
-                                EqualTo("pasword_confirm", message="Passwords do not match")
+                                EqualTo("password_confirm", message="Passwords do not match")
                             ])
     password_confirm = PasswordField("Confirm Password | ", 
                             validators=[

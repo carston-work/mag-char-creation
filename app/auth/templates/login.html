@@ -3,7 +3,30 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-
-    
-
+    <form method="POST">
+        {{ form.csrf_token }}
+        <h2>Log in to your account</h2>
+        {{ form.username.label }}
+        {{ form.username }}
+        {% if form.username.errors %}
+            <ul class="errors" >
+                {% for error in form.username.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+        {{ form.password.label }}
+        {{ form.password(placeholder='At least 10 characters long') }}
+        {% if form.password.errors %}
+            <ul class="errors" >
+                {% for error in form.password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+        {{ form.submit(class='submit') }}
+        <br>
+    </form>
 {% endblock %}
