@@ -14,8 +14,10 @@ def create_app():
 
     from app.main.views import home, main
     from app.auth.views import auth
+    from app.users.views import users
     app.add_url_rule('/', view_func=home)
     app.register_blueprint(main)
     app.register_blueprint(auth)
+    app.register_blueprint(users, url_prefix="/users")
 
     return app

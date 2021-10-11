@@ -31,7 +31,7 @@ def register():
         flash("You have registered successfully.")
         login_user(user)
 
-        return redirect(url_for("main.home"))
+        return redirect(url_for("users.user_profile", username = user.username))
     
     return render_template("register.html", form=form)
 
