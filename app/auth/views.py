@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, url_for, redirect, render_template
+from flask import Blueprint, flash, url_for, redirect, render_template, request
 from flask_login.utils import login_required
 from app.auth.forms import RegistrationForm, LoginForm
 from flask_login import login_user, current_user, logout_user
@@ -51,13 +51,15 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user)
                 flash(f"Welcome back, {user.username}")
-                return redirect(url_for('main.home'))
+                if request.args.get('next'):
+                    return redirect(request.args['next'])
+                return redirect(url_for("users.user_profile", username = user.username))
             else:
                 flash("Incorrect password")
                 return redirect(url_for('auth.login'))
         else: 
             flash('That username does not exist.')
-            return redirect(url_for("main.login"))
+            return redirect(url_for("auth.login"))
     
     return render_template("login.html", form=form)
 

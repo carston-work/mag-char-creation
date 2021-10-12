@@ -6,7 +6,7 @@
 <form method="POST">
     {{ form.csrf_token }}
     <h2>Register for an account</h2>
-    {{ form.username.label }}
+    {{ form.username.label }}<br>
     {{ form.username }}
     {% if form.username.errors %}
         <ul class="errors" >
@@ -16,7 +16,7 @@
         </ul>
     {% endif %}
     <br>
-    {{ form.password.label }}
+    {{ form.password.label }}<br>
     {{ form.password(placeholder='At least 10 characters long') }}
     {% if form.password.errors %}
         <ul class="errors" >
@@ -26,7 +26,7 @@
         </ul>
     {% endif %}
     <br>
-    {{ form.password_confirm.label }}
+    {{ form.password_confirm.label }}<br>
     {{ form.password_confirm(placeholder='At least 10 characters long') }}
     {% if form.password_confirm.errors %}
         <ul class="errors" >

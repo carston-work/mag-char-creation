@@ -9,6 +9,14 @@
 
     <div>
         My Characters:
+        {% if current_user.characters %}
+            <ul>
+            {% for character in current_user.characters %}
+                <li>{{ character.name }} | {{ character.concept }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        {% endif %}
 
     </div>
 

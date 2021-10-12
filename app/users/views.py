@@ -11,6 +11,7 @@ users = Blueprint('users', __name__, template_folder="templates")
 @users.route("/profile/<username>")
 def user_profile(username):
     if current_user == User.query.filter_by(username=username).first():
+
         return render_template("profile.html")
     else:
         flash("You do not have permission to view that page")

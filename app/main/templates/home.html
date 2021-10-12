@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}MAG Character Creator{% endblock %}
+{% block title %}Unofficial MAG Character Creator{% endblock %}
 
 {% block content %}
     <aside>
-        <div id="click-here"><a href="#">Create New Character</a></div>
+        <div><a href="{{ url_for('char.create_new') }}">Create New Character</a></div>
         <div><a href="#">What is the Mistborn Adventure Game?</a></div>
         <div><a href="https://www.crafty-games.com/shop/mistborn-adventure-game/" target="_blank" rel="noopener noreferrer">Crafty Games</a></div>
         <div><a href="https://www.brandonsanderson.com/" target="_blank" rel="noopener noreferrer">brandonsanderson.com</a></div>

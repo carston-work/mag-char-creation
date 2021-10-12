@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS characters;
+
+
 CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(20) UNIQUE NOT NULL,
@@ -6,6 +10,6 @@ CREATE TABLE users(
 
 CREATE TABLE characters(
     character_id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL FOREIGN KEY REFERENCES users(user_id)
+    creator_id INT NOT NULL FOREIGN KEY REFERENCES users(user_id)
     char_name VARCHAR(30) NOT NULL
 );

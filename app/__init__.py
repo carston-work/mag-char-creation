@@ -11,13 +11,16 @@ def create_app():
     app.config['DEBUG'] = True    
 
     init_extensions(app)
+    
 
     from app.main.views import home, main
     from app.auth.views import auth
     from app.users.views import users
+    from app.characters.views import char
     app.add_url_rule('/', view_func=home)
     app.register_blueprint(main)
     app.register_blueprint(auth)
     app.register_blueprint(users, url_prefix="/users")
+    app.register_blueprint(char, url_prefix="/char")
 
     return app
