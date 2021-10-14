@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Create New Crew{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {{ form.csrf_token }}
+        <h2>Create a New Crew</h2>
+        {{ form.name.label }}<br>
+        {{ form.name }}
+        {% if form.name.errors %}
+            <ul>
+                {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+        {{ form.preferences.label }}<br>
+        {% for choice in form.preferences %}
+            {{ choice }}
+            {{ choice.label }}
+            <br>
+        {% endfor %}
+        {% if form.preferences.errors %}
+            <ul>
+                {% for error in form.preferences.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+        {{ form.seeking.label }}
+        {{ form.seeking(checked=True) }}
+        <br>
+        {{ form.submit(class='submit') }}
+    </form>
+{% endblock %}

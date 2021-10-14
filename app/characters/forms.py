@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import widgets
-from wtforms.fields import StringField, BooleanField, SubmitField, SelectMultipleField
+from wtforms.fields import StringField, SubmitField, SelectMultipleField
 from wtforms.validators import InputRequired, DataRequired, ValidationError
 
 

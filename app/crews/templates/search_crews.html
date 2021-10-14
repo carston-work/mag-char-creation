@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% from '_macros.html' import show_prefs %}
+
+{% block title %}Crew Search{% endblock %}
+
+{% block content %}
+
+    <div>
+        {% for crew in crews %}
+            <p>{{ crew.name }} | {{ show_prefs(crew.preferences) }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

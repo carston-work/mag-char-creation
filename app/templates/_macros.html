@@ -1,0 +1,25 @@
+{% macro show_prefs(prefs) %}
+    {% with sixteen = prefs // 16 %}
+    {% with sixteen_r = prefs % 16 %}
+    {% with eight = sixteen_r // 8 %}
+    {% with eight_r = sixteen_r % 8 %}
+    {% with four = eight_r // 4 %}
+    {% with four_r = eight_r % 4 %}
+    {% with two = four_r // 2 %}
+    {% with two_r = four_r % 2 %}
+    {% with one = two_r // 1 %}
+        {% if sixteen %}Action {% endif %}
+        {% if eight %}Adventure {% endif %}
+        {% if four %}Side-Quests {% endif %}
+        {% if two %}Character-Driven {% endif %}
+        {% if one %}Plot-Driven {% endif %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+{% endmacro %}

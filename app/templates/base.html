@@ -12,7 +12,7 @@
     <header id='header'>
         <h3><a href="/">Unofficial MAG Character Creator</a></h3>
         <div id='nav_links'>
-            {% if not current_user.is_authenticated %}<a href="{{ url_for('auth.register') }}">Get Started</a> | <a href="{{ url_for('auth.login') }}">Log In</a>
+            {% if not current_user.is_authenticated %}<a href="{{ url_for('auth.register') }}">Register</a> | <a href="{{ url_for('auth.login') }}">Log In</a>
             {% else %}<a href="{{ url_for('users.user_profile', username=current_user.username) }}">{{ current_user.username }}</a> | <a href="{{ url_for('auth.logout') }}">Log Out</a>
             {% endif %}
         </div>

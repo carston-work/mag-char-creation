@@ -10,6 +10,9 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['DEBUG'] = True    
 
+    app.config["RECAPTCHA_PUBLIC_KEY"] = recaptcha_public
+    app.config["RECAPTCHA_PRIVATE_KEY"] = recaptcha_private
+
     init_extensions(app)
     
 
@@ -17,10 +20,13 @@ def create_app():
     from app.auth.views import auth
     from app.users.views import users
     from app.characters.views import char
+    from app.crews.views import crew
     app.add_url_rule('/', view_func=home)
     app.register_blueprint(main)
     app.register_blueprint(auth)
     app.register_blueprint(users, url_prefix="/users")
     app.register_blueprint(char, url_prefix="/char")
+    app.register_blueprint(crew, url_prefix="/crew")
+    
 
     return app

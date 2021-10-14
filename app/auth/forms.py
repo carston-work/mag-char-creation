@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField, recaptcha
 from wtforms.fields import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import InputRequired, DataRequired, Length, ValidationError, EqualTo
 
@@ -22,6 +22,7 @@ class RegistrationForm(FlaskForm):
                                 InputRequired("You need a password!"),
                                 DataRequired("Your password cannot be a bunch of blank characters.")
                             ])
+    recaptcha = RecaptchaField()
     submit = SubmitField("Register")
 
 
