@@ -54,4 +54,5 @@ def search(char_prefs=0):
         return bin(item.preferences ^ char_prefs).count('1') - count_same
     crews = Crew.query.filter(Crew.seeking==True, Crew.owner_id != current_user.user_id).order_by(Crew.preferences)
     crews = sorted(crews, key=pref_order)
+    #monkeys everywehere
     return render_template('search_crews.html', crews=crews, pref=char_prefs)
