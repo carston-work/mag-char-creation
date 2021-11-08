@@ -11,7 +11,7 @@
     </div>
     <div>
         {% for crew in crews %}
-            <p>{{ crew.name }} | {{ show_prefs(crew.preferences) }}</p>
+            <p>{{ crew.name }} | {{ show_prefs(crew.preferences) }} <a href="{{ url_for('crew.send_request', crew_id=crew.crew_id) }}">Request to Join</a></p>
         {% endfor %}
     </div>
 

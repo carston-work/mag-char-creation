@@ -27,5 +27,15 @@
         {% endif %}
     {% endwith %}
     {% block content %}{% endblock %}
+    <script>
+        buts = document.querySelectorAll('.flashes>li')
+        if (buts) {
+            buts.forEach(elem => {
+                elem.addEventListener('click', () => {
+                    elem.remove()
+                })
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, url_for, redirect
+from flask.helpers import flash
 from flask_login import login_required, current_user
-from app.models import Crew
-from app.crews.forms import CrewForm
+from app.models import Crew, Request
+from app.crews.forms import CrewForm, RequestForm
 from app import db
 
 crew = Blueprint('crew', __name__, template_folder="templates")
@@ -54,5 +55,21 @@ def search(char_prefs=0):
         return bin(item.preferences ^ char_prefs).count('1') - count_same
     crews = Crew.query.filter(Crew.seeking==True, Crew.owner_id != current_user.user_id).order_by(Crew.preferences)
     crews = sorted(crews, key=pref_order)
-    #monkeys everywehere
     return render_template('search_crews.html', crews=crews, pref=char_prefs)
+
+
+@crew.route('/send_request/<crew_id>', methods=['GET', 'POST'])
+@login_required
+def send_request(crew_id):
+    form = RequestForm()
+    chars = [(str(char.character_id), char.name) for char in current_user.characters]
+    form.character_id.choices = chars
+
+    if form.validate_on_submit():
+        new_request = Request(crew_id, form.character_id.data, form.message.data)
+        db.session.add(new_request)
+        db.session.commit()
+        flash("Request successfully sent")
+        return redirect(url_for('users.user_profile', username=current_user.username))
+    
+    return render_template('send_request.html', form=form)

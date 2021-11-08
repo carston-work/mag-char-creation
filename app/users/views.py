@@ -3,8 +3,6 @@ from flask_login import current_user
 from app.models import User
 
 
-from app import db
-
 users = Blueprint('users', __name__, template_folder="templates")
 
 
