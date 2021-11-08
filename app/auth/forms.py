@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm, RecaptchaField, recaptcha
+from flask_wtf import FlaskForm, RecaptchaField
 from wtforms.fields import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import InputRequired, DataRequired, Length, ValidationError, EqualTo
 

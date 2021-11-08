@@ -4,7 +4,11 @@
 {% block title %}Crew Search{% endblock %}
 
 {% block content %}
-
+    <div>
+        <ul>
+            Searching for crews to match: {{ show_prefs(pref) }}
+        </ul>
+    </div>
     <div>
         {% for crew in crews %}
             <p>{{ crew.name }} | {{ show_prefs(crew.preferences) }}</p>

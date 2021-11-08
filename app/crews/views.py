@@ -42,6 +42,16 @@ def add_crew():
 
 @crew.route('/search/<char_prefs>')
 def search(char_prefs=0):
+    char_prefs = int(char_prefs)
+    def pref_order(item):
+        key = bin(int(char_prefs))[2:]
+        search = bin(item.preferences)[2:]
+        count_same = 0
+        langth = min(len(key), len(search))
+        for i in range(-1, -1-langth, -1):
+            if key[i] == search[i]:
+                count_same += 1
+        return bin(item.preferences ^ char_prefs).count('1') - count_same
     crews = Crew.query.filter(Crew.seeking==True, Crew.owner_id != current_user.user_id).order_by(Crew.preferences)
-    crews = sorted(crews, key = lambda crew: crew.preferences ^ int(char_prefs))
-    return render_template('search_crews.html', crews=crews, pref=int(char_prefs))
+    crews = sorted(crews, key=pref_order)
+    return render_template('search_crews.html', crews=crews, pref=char_prefs)
