@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}{{ crew.name }}{% endblock %}
+
+{% block content %}
+    <div>
+        <h3>{{ crew.name }}</h3>
+        {% if crew.characters %}
+        <ul>
+            {% for member in crew.characters %}
+            <li>{{ member.name }} - {{ member.creator.username }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% if current_user.user_id == crew.owner_id %}
+    <aside id='sidebar'>
+        <div>
+            Requests
+            {% if crew.requests %}
+            <ul id='requests'>
+                {% for request in crew.requests %}
+                    <li>
+                        {{ request.character.name }}: "{{ request.message|truncate(15, True) }}"
+                        <button onclick='displayInfo({{ request.request_id }})'>See More</button>
+                        <button onclick='acceptRequest({{ request.request_id }})'>Accept</button>
+                        <button onclick='declineRequest({{ request.request_id }})'>Decline</button>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>You currently have no pending requests</p>
+            {% endif %}
+        </div>
+    </aside>
+    {% endif %}
+    <script>
+        get_more_info = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                moreInfo = document.createElement('span')
+                message = eval(this.response)
+                console.log(message)
+                moreInfo.textContent = message
+                delBut = document.createElement('button')
+                delBut.textContent = "Close"
+                delBut.addEventListener('click', (event) => {
+                    event.target.parentNode.remove()
+                })
+                moreInfo.appendChild(delBut)
+                document.querySelector('body').appendChild(moreInfo)
+            }
+        }
+
+        function displayInfo(id) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = get_more_info
+            xhttp.open("GET", `/crew/requests/${id}`, true)
+            xhttp.send()
+        }
+
+        removeListItem = function(obj) {
+            obj.parentNode.remove()
+        }
+
+        acceptRequest = function(id) {
+            removeListItem(event.target)
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("PUT", `/crew/requests/${id}`, true)
+            xhttp.send()
+        }
+
+        declineRequest = function(id) {
+            removeListItem(event.target)
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("DELETE", `/crew/requests/${id}`, true)
+            xhttp.send()
+        }
+    </script>
+{% endblock %}

@@ -13,7 +13,7 @@
         {% if current_user.characters %}
             <ul>
             {% for character in current_user.characters %}
-                <li>{{ character.name }} | {{ character.concept }} | {{ show_prefs(character.preferences) }} | Crew: {% if character.crew %}{{ character.crew }}{% else %}<a href="{{ url_for('crew.search', char_prefs = character.preferences) }}">Find a crew</a>{% endif %}</li>
+                <li>{{ character.name }} | {{ character.concept }} | {{ show_prefs(character.preferences) }} | Crew: {% if character.crew %}<a href='{{ url_for("crew.view_crew", crew_id=character.crew.crew_id) }}'>{{ character.crew.name }}</a>{% else %}<a href="{{ url_for('crew.search', char_prefs = character.preferences) }}">Find a crew</a>{% endif %}</li>
             {% endfor %}
             </ul>
         {% else %}
@@ -26,7 +26,7 @@
         {% if current_user.crews %}
             <ul>
                 {% for crew in current_user.crews %}
-                    <li>{{ crew.name }} | Size: {{ crew.characters|length }} | Seeking new crew members? {{ crew.seeking }} </li>
+                    <li><a href="{{ url_for('crew.view_crew', crew_id=crew.crew_id) }}">{{ crew.name }}</a> | Size: {{ crew.characters|length }} | Seeking new crew members? {{ crew.seeking }} </li>
                 {% endfor %}
             </ul>
         {% endif %}
