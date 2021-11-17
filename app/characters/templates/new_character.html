@@ -3,6 +3,9 @@
 {% block title %}New Character{% endblock %}
 
 {% block content %}
+    <div>
+        This method of creating your character differs slightly from the procedure outlined in the MAG player's manual.
+    </div>
     <form method="POST">
         {{ form.csrf_token }}
         <h2>Create a new character</h2>
@@ -26,6 +29,17 @@
             </ul>
         {% endif %}
         <br>
+        {{ form.powers.label }} <br>
+        {{ form.powers }}
+        <br>
+        {{ form.race.label }} <br>
+        {{ form.race }}
+        <br>
+
+
+
+
+
         {{ form.preferences.label }} <br>
         {% for choice in form.preferences %}
             {{ choice }}
@@ -42,4 +56,46 @@
         <br>
         {{ form.submit(class='submit') }}
     </form>
+    <script>
+        powers = document.getElementById('powers')
+        race = document.getElementById('race')
+        powers.addEventListener('change', (event) => {
+            for (let i=race.length-1; i>=0; i--) {
+                race.remove(i)
+            }
+            if (powers.value === 'mimicry') {
+                kandra = document.createElement('option')
+                kandra.textContent = 'Kandra'
+                kandra.value = 'kandra'
+                race.add(kandra)
+            } else if (powers.value === 'misting' || powers.value === 'mistborn') {
+                skaa = document.createElement('option')
+                noble = document.createElement('option')
+                skaa.textContent = "Skaa"
+                skaa.value = 'skaa'
+                noble.textContent = "Noble"
+                noble.value = "noble"
+                race.add(noble)
+                race.add(skaa)
+            } else if (powers.value === 'keeper') {
+                terris = document.createElement('option')
+                terris.textContent = "Terris"
+                terris.value = "terris"
+                race.add(terris)
+            } else {
+                skaa = document.createElement('option')
+                noble = document.createElement('option')
+                skaa.textContent = "Skaa"
+                skaa.value = 'skaa'
+                noble.textContent = "Noble"
+                noble.value = "noble"
+                race.add(noble)
+                race.add(skaa)
+                terris = document.createElement('option')
+                terris.textContent = "Terris"
+                terris.value = "terris"
+                race.add(terris)
+            }
+        })
+    </script>
 {% endblock %}

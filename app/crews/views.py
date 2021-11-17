@@ -68,7 +68,7 @@ def search(char_prefs=0):
 @login_required
 def send_request(crew_id):
     form = RequestForm()
-    chars = [(str(char.character_id), char.name) for char in current_user.characters]
+    chars = [(str(char.character_id), char.name) for char in current_user.characters if not char.crew]
     form.character_id.choices = chars
 
     if form.validate_on_submit():
