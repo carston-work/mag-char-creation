@@ -16,6 +16,7 @@ def create_new():
         name = form.name.data
         concept = form.concept.data
         creator_id = current_user.user_id
+        
 
         preferences = form.preferences.data
         preferences_int = 0

@@ -45,7 +45,7 @@ class CharacterForm(FlaskForm):
         InputRequired("This field must be filled"),
         DataRequired("This field must be filled")],
         default=100)
-    physique = IntegerField("Physique", validators=[
+    physique = IntegerField("Physique: ", validators=[
         InputRequired("This field must be filled"),
         DataRequired("This field must be filled")],
         default=2)
@@ -116,7 +116,7 @@ class CharacterForm(FlaskForm):
         DataRequired('This field must be filled'),
         Length(min=1, max=128, message="This field must contain between 1 and 128 characters")
     ])
-    powers = SelectField("Powers", choices=[("none", "None"), ("mimicry", "Mimicry"), ("misting", "Misting"), ("mistborn", "Mistborn"), ("keeper", "Keeper")], validators=[
+    powers = SelectField("Powers: ", choices=[("none", "None"), ("mimicry", "Mimicry"), ("misting", "Misting"), ("mistborn", "Mistborn"), ("keeper", "Keeper")], validators=[
         InputRequired("This field must be filled")
     ])
     submit = SubmitField("Create Character")

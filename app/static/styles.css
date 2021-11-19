@@ -23,7 +23,19 @@ body > div {
     width: 50%;
     font-size: 2em;
     padding: 1em;
-    
+}
+
+input[type='number'] {
+    width:50px;
+}
+
+td.middle, th.middle {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+tr.headings {
+    border-bottom: 2px solid white;
 }
 
 #nav_links {

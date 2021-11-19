@@ -4,11 +4,12 @@
 
 {% block content %}
     <div>
+        <h2>Create a new character</h2>
         This method of creating your character differs slightly from the procedure outlined in the MAG player's manual.
     </div>
     <form method="POST">
         {{ form.csrf_token }}
-        <h2>Create a new character</h2>
+        <span id='span_0'>
         {{ form.name.label }} <br>
         {{ form.name }}
         {% if form.name.errors  %}
@@ -29,17 +30,87 @@
             </ul>
         {% endif %}
         <br>
-        {{ form.powers.label }} <br>
+        {{ form.age.label }}
+        {{ form.age(type='number') }}
+        <br>
+        {{ form.sex.label }}
+        {{ form.sex }}
+        <br>
+        {{ form.height.label }}
+        {{ form.height(type='number') }}
+        <br>
+        {{ form.weight.label }}
+        {{ form.weight(type='number') }}
+        </span>
+        <span hidden id='span_1'>
+        {{ form.powers.label }}
         {{ form.powers }}
         <br>
-        {{ form.race.label }} <br>
+        {{ form.race.label }}
         {{ form.race }}
-        <br>
+        </span>
+        <span id="span_2" hidden>
+            <p>Why did you join the crew?</p>
+            {{ form.drive.label }} <br>
+            {{ form.drive }}
+            <p>How did you live before you joined the crew?</p>
+            {{ form.profession.label }} <br>
+            {{ form.profession }}
+            <p>What special skill do you bring to the crew?</p>
+            {{ form.specialty.label }} <br>
+            {{ form.specialty }}
+            <p>What is your most distinctive feature?</p>
+            {{ form.feature.label }} <br>
+            {{ form.feature }}
+            <p>How do other people describe your personality?</p>
+            {{ form.personality.label }} <br>
+            {{ form.personality }}
+        </span>
+        <span hidden id="span_3">
+            <p>Do you have strong personal talents or an abundance of wealth, friends, or luck?</p>
+            <select name="preference" id="preference">
+                <option value=null>--Select an option--</option>
+                <option value="atts">Personal talents</option>
+                <option value="stands">Wealth, friends, luck</option>
+            </select>
+        </span>
+        <span id="span_4" hidden>
+            <table>
+                <tr class='headings'>
+                    <th>Attributes<p id='atts'>(0)</p></th>
+                    <th class='middle'>Standings<p id='stands'>(0)</p></th>
+                    <th>Resiliences</th>
+                </tr>
+                <tr>
+                    <td>{{ form.physique.label }}<br>{{ form.physique(type='number', min=2, class="numbers atts health", max=2) }}</td>
+                    <td class='middle'>{{ form.resources.label }}<br>{{ form.resources(type='number', min=2, class="numbers stands health", max=2) }}</td>
+                    <td>{{ form.health.label }}<br>{{ form.health(type='number', min=4, readonly=True) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.charm.label }}<br>{{ form.charm(type='number', min=2, class="numbers atts reputation", max=2) }}</td>
+                    <td class='middle'>{{ form.influence.label }}<br>{{ form.influence(type='number', min=2, class="numbers stands reputation", max=2) }}</td>
+                    <td>{{ form.reputation.label }}<br>{{ form.reputation(type='number', min=4, readonly=True) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.wits.label }}<br>{{ form.wits(type='number', min=2, class="numbers atts willpower", max=2) }}</td>
+                    <td class='middle'>{{ form.spirit.label }}<br>{{ form.spirit(type='number', min=2, class="numbers stands willpower", max=2) }}</td>
+                    <td>{{ form.willpower.label }}<br>{{ form.willpower(type='number', min=4, readonly=True) }}</td>
+                </tr>
+            </table>
+        </span>
+        <span id="span_5" hidden>
+            <p>What is the worst thing that ever happened to you?</p>
+            {{ form.tragedy.label }}
+            {{ form.tragedy }}
+            <p>What do you believe is your ultimate purpose?</p>
+            {{ form.destiny.label }}
+            {{ form.destiny }}
+        </span>
 
 
 
 
-
+        <span hidden>
         {{ form.preferences.label }} <br>
         {% for choice in form.preferences %}
             {{ choice }}
@@ -53,13 +124,24 @@
                 {% endfor %}
             </ul>
         {% endif %}
+        </span>
         <br>
-        {{ form.submit(class='submit') }}
+        <div id='-1' hidden class='submit'>Previous</div>
+        <div id='1' class='submit'>Next</div>
+        {{ form.submit(class='submit', hidden=True) }}
     </form>
     <script>
+        span_id = 0
+        numsArray = ['strong', 'average']
+        spans = document.querySelectorAll('form>span')
         powers = document.getElementById('powers')
         race = document.getElementById('race')
-        powers.addEventListener('change', (event) => {
+        preference = document.getElementById('preference')
+        nums = document.querySelectorAll('.numbers')
+        atts = document.querySelectorAll('.atts')
+        stands = document.querySelectorAll('.stands')
+        powers.addEventListener('change', () => {
+            resetNums()
             for (let i=race.length-1; i>=0; i--) {
                 race.remove(i)
             }
@@ -68,6 +150,7 @@
                 kandra.textContent = 'Kandra'
                 kandra.value = 'kandra'
                 race.add(kandra)
+                numsArray = ['strong', 'weak']
             } else if (powers.value === 'misting' || powers.value === 'mistborn') {
                 skaa = document.createElement('option')
                 noble = document.createElement('option')
@@ -77,11 +160,13 @@
                 noble.value = "noble"
                 race.add(noble)
                 race.add(skaa)
+                numsArray = powers.value === 'misting' ? ['strong', 'weak'] : ['average', 'weak']
             } else if (powers.value === 'keeper') {
                 terris = document.createElement('option')
                 terris.textContent = "Terris"
                 terris.value = "terris"
                 race.add(terris)
+                numsArray = ['average', 'weak']
             } else {
                 skaa = document.createElement('option')
                 noble = document.createElement('option')
@@ -95,7 +180,146 @@
                 terris.textContent = "Terris"
                 terris.value = "terris"
                 race.add(terris)
+                numsArray = ['strong', 'average']
             }
+        })
+        
+        move_span = function(event) {
+            span_id += parseInt(event.target.id)
+            if (span_id <= 0) {
+                span_id = 0
+                document.getElementById('-1').hidden = true
+            } else if (span_id >= spans.length-1) {
+                span_id = spans.length-1
+                document.getElementById('1').hidden = true
+                document.getElementById('submit').hidden = false
+            } else {
+                document.getElementById('1').hidden = false
+                document.getElementById('-1').hidden = false
+                document.getElementById('submit').hidden = true
+            }
+            for (let i=0; i<spans.length; i++) {
+                if (i===span_id) {
+                    spans[i].hidden = false
+                } else {
+                    spans[i].hidden = true
+                }
+            }
+            if (span_id === 4) {
+                document.getElementById('1').hidden = true
+            }
+            
+        }
+
+        navs = document.querySelectorAll('form>div')
+        for (let i=0; i<2; i++) {
+            navs[i].addEventListener('click', move_span)
+        }
+
+        resetNums = function() {
+            nums.forEach(element => {
+                element.value = 2
+                element.max = 2
+            })
+            document.getElementById('atts').textContent = '(0)'
+            document.getElementById('stands').textContent = '(0)'
+            document.getElementById('health').value = 4
+            document.getElementById('reputation').value = 4
+            document.getElementById('willpower').value = 4
+        }
+
+        preference.addEventListener('change', (event) => {
+            resetNums()
+            if (event.target.value === null) {
+                // do nothing
+            } else if (event.target.value === 'atts') {
+                atts.forEach(elem => {
+                    if (numsArray[0] === 'strong') {
+                        elem.max = 6
+                        document.getElementById('atts').textContent = '(13)'
+                    } else {
+                        elem.max = 5
+                        document.getElementById('atts').textContent = '(11)'
+                    }
+                })
+                stands.forEach(elem => {
+                    if (numsArray[1] === 'average') {
+                        elem.max = 6
+                        document.getElementById('stands').textContent = '(11)'
+                    } else {
+                        elem.max = 4
+                        document.getElementById('stands').textContent = '(9)'
+                    }
+                })
+            } else if (event.target.value === 'stands') {
+                stands.forEach(elem => {
+                    if (numsArray[0] === 'strong') {
+                        elem.max = 8
+                        document.getElementById('stands').textContent = '(13)'
+                    } else {
+                        elem.max = 6
+                        document.getElementById('stands').textContent = '(11)'
+                    }
+                })
+                atts.forEach(elem => {
+                    if (numsArray[1] === 'average') {
+                        elem.max = 5
+                        document.getElementById('atts').textContent = '(11)'
+                    } else {
+                        elem.max = 4
+                        document.getElementById('atts').textContent = '(9)'
+                    }
+                })
+            }
+        })
+
+        check_totals = function() {
+            attsTotal = 0
+            standsTotal = 0
+            atts.forEach(elem => {
+                attsTotal += parseInt(elem.value)
+            })
+            stands.forEach(elem => {
+                standsTotal += parseInt(elem.value)
+            })
+            attsLimit = parseInt(document.getElementById('atts').textContent.slice(1, -1))
+            standsLimit = parseInt(document.getElementById('stands').textContent.slice(1, -1))
+            if (attsTotal === attsLimit && standsTotal === standsLimit) {
+                document.getElementById('1').hidden = false
+            } else {
+                document.getElementById('1').hidden = true
+            }
+        }
+        
+        nums.forEach(element => {
+            element.addEventListener('keypress', (event) => {
+                event.preventDefault()
+            })
+            element.addEventListener('change', (event) => {
+                if (!event.target.value) {
+                    event.target.value = 2
+                }
+                row = event.target.classList[2]
+                column = event.target.classList[1]
+                res = document.getElementById(row)
+                heading = document.getElementById(column)
+                columnBits = document.querySelectorAll(`.${column}`)
+                rowBits = document.querySelectorAll(`.${row}`)
+                rowTotal = 0
+                columnTotal = 0
+                columnBits.forEach(elem => {
+                    columnTotal += parseInt(elem.value)
+                })
+                columnMax = parseInt(heading.textContent.slice(1, -1))
+                if (columnTotal > columnMax) {
+                    event.target.value = event.target.min
+                }
+                rowBits.forEach(elem => {
+                    rowTotal += parseInt(elem.value)
+                })
+                res.value = rowTotal
+                check_totals()
+            })
         })
     </script>
 {% endblock %}
